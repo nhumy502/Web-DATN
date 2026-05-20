@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Đăng ký</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+body{
+  background: linear-gradient(135deg,#bbf7d0,#ffffff);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.form-box{
+  width:350px;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.form-box h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#16a34a;
+}
+
+.form-control{
+  border-radius:10px;
+}
+
+.form-control:focus{
+  border-color:#22c55e;
+  box-shadow:0 0 5px #22c55e;
+}
+
+.btn-main{
+  background:#22c55e;
+  color:white;
+  border:none;
+  border-radius:10px;
+  width:100%;
+  margin-top:10px;
+}
+
+.btn-main:hover{
+  background:#16a34a;
+}
+
+.link{
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Đăng ký</h2>
+
+<input id="user" class="form-control" placeholder="Tên đăng nhập"><br>
+
+<input id="pass" type="password" class="form-control" placeholder="Mật khẩu"><br>
+
+<input id="repass" type="password" class="form-control" placeholder="Nhập lại mật khẩu"><br>
+
+<button class="btn btn-main" onclick="dangKy()">Đăng ký</button>
+
+<div class="link">
+  <a href="dangnhap.html">Đã có tài khoản? Đăng nhập</a>
+</div>
+
+</div>
+
+<script>
+function dangKy(){
+  let user = document.getElementById("user").value.trim(); /* Lấy dữu liệu từ ô nhập */
+  let pass = document.getElementById("pass").value.trim();
+  let repass = document.getElementById("repass").value.trim();
+
+  if(!user || !pass || !repass){
+    alert("Vui lòng nhập đầy đủ!");       /* kiểm tra dữ liệu trống */
+    return;
+  }
+
+  if(pass !== repass){
+    alert("Mật khẩu không khớp!");      /* kiểm tra mk nhập lại */
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let check = users.find(u => u.user === user);
+  if(check){
+    alert("Tài khoản đã tồn tại!");
+    return;
+  }
+
+  users.push({user: user, pass: pass});
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Đăng ký thành công!");
+  window.location.href = "dangnhap.html";
+}
+</script>
+	
+
+</body>
+</html>

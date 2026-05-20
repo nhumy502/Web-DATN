@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Vợt Yonex</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+body {
+	background:radial-gradient(circle at top left, #bbf7d0 0%, transparent 40%),radial-gradient(circle at bottom right, #86efac 0%, transparent 40%),#ffffff;
+	color:#374151; font-family: Arrial;}
+
+/* MENU */
+.mega-menu {
+  position: absolute;
+  width: 50vw;  /*độ rộng*/
+  left: 0;
+  background: white;
+	border-top: 3px solid #22c55e;
+  padding: 20px;
+  display: none;
+  z-index: 1000;
+	overflow: hidden;
+}
+	.mega-menu a {
+  display: block;
+		color: white;
+		margin-bottom: 5px;
+		text-align: left;
+  padding: 5px 0;
+  white-space: normal;   /* cho phép xuống dòng */
+}
+
+.mega-menu .col-sm-3 {
+  border-right: 1px solid #333;
+	padding: 10px;
+	float: left;
+}
+
+.mega-menu .col-sm-3:last-child 
+	{
+  border-right: none;
+}
+.mega-menu h4 {
+	margin-bottom: 10px;
+  	display: block;
+  	width: 100%;
+ 	margin-bottom: 10px;
+	color: #16a34a;
+}		
+
+.mega-menu a {
+  display: block;
+  margin-bottom: 5px;
+	text-align: left;
+	color: #374151;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+	.mega-menu .row {
+		margin: 0 !important;
+  display: flex;
+}
+	.mega-menu h4 {color: orange;}
+.mega-menu a {
+	color:white; 
+	display:block; 
+	margin-bottom:5px;}
+.mega-menu a:hover {
+	color:#22c55e;}
+	/*NAV*/
+	.navbar{
+		background: linear-gradient(to right, #22c55e,#4ade80);
+	}
+	.navbar-brand 
+	{
+  height: 50px;          
+  padding: 5px 15px; 
+		color: white !important;
+		font-weight: bold;
+}
+	.navbar-nav li a {
+		color: white !important;
+		padding: 20px 30px;
+		font-size: 15px;
+	}
+	.navbar-nav li a:hover{
+		background: #16a34a !important;
+		border-radius:  20px;
+		
+	}
+	.navbar-nav li{
+		margin-right: 5px;
+	}
+	.navbar{
+		background: #111827;
+		border: none;
+	}
+	
+	
+.dropdown:hover .mega-menu {display:block;}
+
+
+
+/* PRODUCT */
+.product {
+  background:white;
+  padding:15px;
+  text-align:center;
+  margin-bottom:20px;
+  cursor:pointer;
+  border-radius:12px;
+  transition:0.3s;
+	border: 1px solid #e5e7eb;
+}
+.product:hover {
+  transform: translateY(-5px);
+	box-shadow:  0 5px 15px rgba(34,197,94,0.3);
+}
+	.product h4{
+		color: #16a34a;
+	}
+	.product p{
+		color:#22c55e;
+	}
+
+.product img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:8px;
+}
+	/*BUTTON*/
+	.btn-danger{
+		background: #22c55e;
+		border: none;
+	}
+
+/* FIX MODAL */
+.modal-content {
+  background: white,
+	  color:#374151;
+}
+	/*chống tràn chữ*/
+	#info {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+	/*MODAL cuộn*/
+	.modal-body{
+		max-height: 400px;
+		overflow-y: auto;
+	}
+	#img {
+		width: 100%;
+		height:250px;
+		object-fit: cover;
+	}
+	.footer {
+  background: linear-gradient(to right, #064e3b, #022c22);
+  color: white;
+  padding: 40px 0;
+  margin-top: 50px;
+  border-top: 3px solid #22c55e;
+}
+
+/* tiêu đề */
+.footer h4 {
+  color: #4ade80;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* nội dung */
+.footer p {
+  color: #d1fae5;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+
+/* hover nổi */
+.footer p:hover {
+  color: #22c55e;
+  transform: translateX(5px);
+  cursor: pointer;
+}
+
+/* đường line */
+.footer hr {
+  border-color: #065f46;
+  margin: 20px 0;
+}
+
+/* dòng cuối */
+.footer .text-center {
+  color: #86efac;
+  font-size: 13px;
+}
+	
+#user-area a{
+  color:white !important;
+  margin-left:10px;
+}
+
+#user-area b{
+  color:#22c55e;
+}
+
+</style>
+	
+	
+	<!-- hiển thị thông tin sản phầm -->
+	
+	<script>
+	function showDetail(name, price, img, infoArray){
+  document.getElementById("name").innerHTML = name;
+  document.getElementById("price").innerHTML = price;
+  document.getElementById("img").src = img;
+
+  let html = "<ul>";
+
+  if(infoArray){
+    infoArray.forEach(function(i){
+      html += "<li>" + i + "</li>";
+    });
+  }
+html +="</ul>";
+  document.getElementById("info").innerHTML = html;
+
+  $("#myModal").modal("show");
+}
+	</script>
+	<!-- THÊM VÀO GIỎ HÀNG -->
+	
+	<script>
+function addToCart(name, price, img){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let index = cart.findIndex(item => item.name === name);
+
+  if(index !== -1){
+    cart[index].qty += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: Number(price),
+      img: img,
+      qty: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+	<!-- HIỂN THỊ GIỎ HÀNG -->
+	<script>
+function renderCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let html = "";
+  let total = 0;
+
+  if(cart.length === 0){
+    html = "Chưa có sản phẩm";
+  } else {
+    cart.forEach(function(item, index){
+      let itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      html += `
+      <div style="display:flex; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+        
+        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:5px; margin-right:10px;">
+
+        <div style="flex:1;">
+          <b>${item.name}</b><br>
+          ${item.price.toLocaleString()}đ x ${item.qty}
+          <br><b>${itemTotal.toLocaleString()}đ</b>
+
+          <br>
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <button onclick="removeItem(${index})">X</button>
+        </div>
+
+      </div>
+      `;
+    });
+
+    html += `<hr><b>Tổng: ${total.toLocaleString()}đ</b>`;
+  }
+
+  document.getElementById("cart-items").innerHTML = html;
+  document.getElementById("cart-count").innerText = cart.length;
+}
+</script>
+	
+	<!-- TĂNG GIẢM, XOÁ SẢN PHẨM -->
+	<script>
+function changeQty(index, change){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(index,1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+	<script>
+renderCart();
+</script>
+	
+	<script>
+function searchProduct(){
+  let keyword = document.getElementById("search").value.toLowerCase();
+  let products = document.getElementsByClassName("product-item");
+
+  for(let i = 0; i < products.length; i++){
+    let name = products[i].innerText.toLowerCase();
+
+    if(name.includes(keyword)){
+      products[i].style.display = "block";
+    } else {
+      products[i].style.display = "none";
+    }
+  }
+}
+</script>
+	
+</head>
+
+<body>
+	<!-- MENU -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">
+        <img src="../image/logo.png" style="height:40px;">
+      </a>
+    </div>
+
+    <!-- MENU -->
+     <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Trang chủ</a></li>
+
+      <li class="dropdown">
+        <a href="#">Sản phẩm</a>
+        <div class="mega-menu">
+          <div class="row">
+            <div class="col-sm-3">
+              <h4>Vợt</h4>
+              <a href="Vợt Yonex.html">Yonex</a>
+              <a href="Vợt Lining.html">Lining</a>
+              <a href="Vợt Victor.html">Victor</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Giày</h4>
+              <a href="Giày Yonex.html">Yonex</a>
+              <a href="Giày lining.html">Lining</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Quần áo</h4>
+              <a href="Áo.html">Áo</a>
+              <a href="Quần.html">Quần</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Phụ kiện</h4>
+              <a href="Cước.html">Cước</a>
+              <a href="Quả cầu.html">Quả cầu</a>
+				<a href="Vớ.html">Vớ</a>
+				
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="Gioithieu.html">Giới thiệu</a></li>
+      <li><a href="Lienhe.html">Liên hệ</a></li>
+    </ul>
+
+    <!-- TÌM KIẾM -->
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" id="search" class="form-control" placeholder="🔍 Tìm sản phẩm..." onKeyup="searchProduct
+()">
+      </div>
+      <button type="button " class="btn btn-success" onclick="searchProduct()">Tìm</button>
+    </form>
+    <!-- LOGIN -->
+    <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    🛒 Giỏ hàng (<span id="cart-count">0</span>)
+  </a>
+
+  <ul class="dropdown-menu" style="width:300px; padding:10px;">
+    <li id="cart-items">Chưa có sản phẩm</li>
+  </ul>
+</li>
+      <li><a href="Dangky.html"><span class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
+      <li><a href="Dangnhap.html"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+		<li id="user-area"></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Vợt Lining</h2>
+  
+  <div class="row">
+<!-- SP 1 -->
+    <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Aeronaut 7000B',4050000,'../image/Vợt/Ln Aeronaut 7000B.jpg',
+							  [
+							   '1. Giới thiệu Vợt cầu lông Lining Aeronaut 7000B',
+'- Vợt cầu lông Lining Aeronaut 7000B thuộc phân khúc cao cấp, có điểm cân bằng 298mm hơi nặng đầu và đũa cứng ở mức trung bình, phù hợp với những người chơi có lối đánh toàn diện, thích tấn công và có cổ tay khỏe. ',
+'- Được xây dựng trên nền tảng công nghệ Aeronaut, có các rãnh thoát khí độc đáo được tích hợp vào đầu vợt, điều này làm giảm sức cản không khí khi vung vợt giúp người dùng tạo ra những cú đánh tốc độ hơn. Phù hợp cho người chơi có lối đánh thiên công, tốc độ nhanh.',
+'- Thân vợt có độ cứng trung bình cho cảm giác vung vợt nhanh và chắc chắn hơn. Hạn chế được tối đa cảm giác rung lắc hay xoắn vặn vợt sau mỗi cú đánh và cảm giác ổn định hơn dù điểm tiếp xuc giữ vợt và cầu không nằm trong điểm ngọt của mặt khung.',
+'2. Thông số kỹ thuật của Vợt cầu lông Lining Aeronaut 7000B',
+'- Độ cứng: Trung bình',
+'- Chất liệu: Military Grade Carbon Fiber',
+'- Trọng lượng: 87g (W3)',
+'- Điểm cân bằng: 298mm (Hơi nặng đầu)',
+'- Chu vi cán vợt: S1 (G6)',
+'- Chiều dài vợt: 675mm',
+'- Chiều dài cán vợt: 210mm (Cán dài)',
+'- Sức căng: Dọc 26-30 lbs, ngang 28-32 lbs (Tối đa 13,6kg)',
+'- Màu sắc: Xanh Dương phối Đen',
+		])">
+	
+<img src="../image/Vợt/Ln Aeronaut 7000B.jpg">
+<h4>Lining Aeronaut 7000B</h4>
+<p>4.050.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Aeronaut 7000B',
+4050000,
+'../image/Vợt/Ln Aeronaut 7000B.jpg'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+<!-- SP 2 -->
+    <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Axforce 70',3090000,'../image/Vợt/Ln Axforce 70.png',[
+							   '1. Giới thiệu vợt cầu lông Lining Axforce 70 chính hãng',
+'Vợt cầu lông Axforce 70 đã trở thành sự lựa chọn của tay vợt hàng đầu Xu Chen. Có hai phiên bản khác nhau gồm 4U và 5U đem lại sự linh hoạt và tốc độ cho người chơi. Với đũa vợt dày 6,6 mm, mang lại cảm giác đánh linh hoạt và phản ứng nhanh, giúp người chơi tạo ra các cú đánh chính xác và mạnh mẽ trên sân.',
+'Với đặc tính đũa vợt mềm, Axforce 70 cho phép người chơi kiểm soát cầu tốt hơn. Sự kết hợp giữa đũa vợt mềm và khung chất liệu M40X tạo ra một vợt cầu lông nhẹ nhàng, nhưng vẫn đảm bảo sự ổn định và độ bền.',
+'2. Thông số vợt cầu lông Lining Axforce 70 Xám (Mã JP)',
+'- Thương hiệu: Li-Ning',
+'- Khung vợt: M40X+High Resilient Carbon Fiber',
+'- Đũa vợt: High Resilient Carbon Fiber',
+'- Độ cứng: Trung Bình',
+'- Điểm cân bằng: 305mm',
+'- Trọng lượng / Cán cầm: 4U/G5, 5U/G5',
+'- Độ dài vợt: 675mm',
+'- Điểm swing weight: 85 kg/cm2',
+'- Mức căng: 4U ≤ 13.5kg, 5U ≤ 13kg',
+
+		])">
+	
+<img src="../image/Vợt/Ln Axforce 70.png">
+<h4>Lining Axforce 70</h4>
+<p>3.090.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Axforce 70',
+3090000,
+'../image/Vợt/Ln Axforce 70.png'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 3 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Axforce 80 JR',2400000,'../image/Vợt/Ln Axforce 80 JR.png',[
+							   '1. Giới thiệu Vợt cầu lông Lining Axforce 80 JR',
+'- Vợt cầu lông Lining Axforce 80 JR | Chiến Binh Siêu Tốc Độ là sản phẩm vừa được hãng cho ra mắt giữa năm 2022 thuộc phân khúc giá cận cao cấp của dòng vợt Axforce đã rất thành công. Việc này đồng nghĩa với việc bạn sẽ có thêm một sự lựa chọn chất lượng trong tiêu chí vợt cầu lông thiên công với mức giá không quá cao.',
+'- Với gam màu đen cùng các họa tiết cam, vàng và xanh mang đầy tính công nghệ chạy dọc theo khung vợt tạo cảm giác khỏe khắn, trẻ trung, tăng thêm phần tự tin cho các lông thủ trên sân cầu.',
+'2. Thông số Vợt cầu lông Lining Axforce 80 JR',
+'- Thương hiệu: Lining.',
+'- Điểm cân bằng: 300 mm (Nặng đầu).',
+'- Độ cứng: Trung bình.',
+'- Trọng lượng/Chu vi cán vợt: 5U (78.8g) | G5.',
+'- Vật liệu khung: Dynamic Optimum Frame.',
+'- Vật liệu trục: Carbon Fibre.',
+'- Sức căng: 30 lbs (13,5kg).',
+'- Sản xuất: Trung Quốc.',
+				  
+		])">
+	
+<img src="../image/Vợt/Ln Axforce 80 JR.png">
+<h4>Lining Axforce 80 JR</h4>
+<p>2.400.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Axforce 80 JR',
+2400000,
+'../image/Vợt/Ln Axforce 80 JR.png'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  <!-- SP 4 -->
+	  
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Calibar 600i',2750000,'../image/Vợt/Ln Calibar 600i.webp',[
+							   '1. Giới thiệu về vợt cầu lông Lining Calibar 600i',
+'- Vợt cầu lông Lining Calibar 600i được xây dựng trên nền tảng công nghệ 3D Calibar và có thiết kế khung vợt khí động học công nghệ cao, giúp giảm đáng kể sức cản của không khí, nó tạo ra tốc độ swing nhanh hơn cho những cú đập tốc độ cao.',
+'- Lining Calibar 600I (INSTINCT) có đầu nặng hơn và điểm cân bằng cao hơn. Thích hợp cho những người chơi rất mạnh mẽ, năng nổ, tìm kiếm sức mạnh MAXIMUM. Đây là cây vợt thuộc phân khúc cận cao cấp của nhà sản xuất cầu lông hàng đầu thế giới đến từ Trung Quốc.',
+'2. Thông số vợt cầu lông Lining Calibar 600i',
+'- Độ cứng: Trung bình',
+'- Khung vợt: Military Grade Carbon Fiber',
+'- Thân vợt: Military Grade Carbon Fiber',
+'- Trọng lượng: 79g (W1)',
+'- Điểm cân bằng: 314 mm (Rất nặng đầu)',
+'- Chu vi cán vợt: S1 (G6)',
+'- Chiều dài vợt: 670 mm (Ngắn)',
+'- Chiều dài cán vợt: 200 mm',
+'- Điểm swing weight: 85,2 kg/cm2',
+'- Sức căng: Dọc 24-28 lbs, Ngang 26-30 lbs (Tối đa 12,7kg)',
+'- Màu sắc: Đen',
+
+		])">
+	
+<img src="../image/Vợt/Ln Calibar 600i.webp">
+<h4>Lining Calibar 600i</h4>
+<p>2.750.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Calibar 600i',
+2750000,
+'../image/Vợt/Ln Calibar 600i.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 5 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining HC1050',900000,'../image/Vợt/Ln HC1050.webp',[
+							   '1. Giới thiệu về vợt cầu lông Lining HC 1050',
+'Vợt cầu lông Lining HC1050 là cây vợt nằm trong phân khúc giá rẻ được sản xuất bởi nhà sản xuất Lining hướng đến đối tượng người chơi mới, học sinh sinh viên, người chơi phong trào.',
+'Lining HC1050 thân vợt cứng trung bình, hơi nặng đầu một chút nên đây là cây vợt phù hợp lối chơi công thủ toàn diện hơi thiên công, vợt rất dễ đánh, dù là người mới chơi cũng rất dễ có cảm giác quen tay với dòng vợt này. Tuy nhiên, tốt nhất bạn có trình độ trung bình trở lên để sử dụng tốt nhất.',
+'2. Thông số về vợt cầu lông Lining HC 1050',
+'- Khung vợt: Carbon Fiber',
+'- Thân vợt: Carbon Fiber',
+'- Trọng lượng: 4U',
+'- Chu vi cán vợt: S2',
+'- Sức căng tối đa: 20-26 LBS',
+'- Điểm cân bằng: 295 mm',
+'- Màu sắc: Xanh dương/ Trắng',
+'- Sản xuất: Trung Quốc',
+
+		])">
+	
+<img src="../image/Vợt/Ln HC1050.webp">
+<h4>Lining HC1050</h4>
+<p>900.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining HC1050',
+900000,
+'../image/Vợt/Ln HC1050.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 6 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Lightning 2000',1049000,'../image/Vợt/Ln Lightning 2000.jpg',[
+							   '1. Giới thiệu Vợt cầu lông Lining Lightning 2000',
+'Vợt cầu lông Lining Lightning 2000 thuộc phân khúc tầm trung của thương hiệu Lining với 3 phiên bản: xanh lá, xanh dương và màu đỏ. Với vẻ ngoài mạnh mẽ, hiện đại kết hợp cùng với nước sơn nhám làm nổi bật vợt. Mang thông số dễ chơi và dễ kiểm soát, hướng đến các đối tượng người chơi mới tập làm quen với bộ môn này.',
+'Lining Lightning 2000 với chỉ số cân bằng, đũa vợt trung bình dành cho người chơi yêu thích lối đánh linh hoạt, ứng biến trong từng pha cầu, xoay chuyển tình huống phòng thủ sang tấn công một cách nhanh chóng.',
+'2. Thông số kỹ thuật Vợt cầu lông Lining Lightning 2000',
+'- Độ cứng: Trung bình.',
+'- Chất liệu: Carbon Fiber',
+'- Trọng lượng: 84g (4U)',
+'- Sức căng tối đa: 13.5kg',
+'- Điểm cân bằng: 290 +- 2mm',
+'- Chiều dài tổng thể: 675 mm',
+'- Điểm swing weight: 84kg/cm2',
+
+		])">
+	
+<img src="../image/Vợt/Ln Lightning 2000.jpg">
+<h4>Lining Lightning 2000</h4>
+<p>1.049.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Lightning 2000',
+1049000,
+'../image/Vợt/Ln Lightning 2000.jpg'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 7 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Tectonic 6',2300000,'../image/Vợt/Ln Tectonic 6.png',[
+							   '1. Giới thiệu vợt cầu lông Lining Tectonic 6',
+'- Kể từ khi nhà Lining cho ra mắt Series Tectonic vào năm 2019, các bảo kiếm thuộc dòng vợt này được rất nhiều khách hàng ưa chuộng kể cả vận động viên thế giới và người chơi phong trào. Nhưng cho đến hiện tại, dòng vợt này chỉ bao gồm toàn là các sản phẩm cao cấp với giá thành cao và đòi hỏi người chơi phải có trình độ tốt mới sử dụng được nên chính vì vậy, một siêu phẩm tấn công tầm trung new 2022 vừa được ra mắt vào tháng 3 chính là vợt cầu lông Lining Tectonic 6 dễ dàng hơn cho các lông thủ phong trào tầm trung và tầm thấp sử dụng đấy nhé!',
+'2. Thông số vợt cầu lông Lining Tectonic 6',
+'- Khung vợt: Carbon T1100G',
+'- Thân vợt: Carbon Fiber',
+'- Điểm cân bằng: 302mm (Nặng đầu)',
+'- Trọng lượng: 4U/ 5U',
+'- Độ cứng đũa: Trung bình',
+'- Đường kính đũa: 6.8mm (Trung bình)',
+'- Chiều dài tổng thể vợt: 675mm',
+'- Chiều dài cán vợt: 200mm',
+'- Điểm swing weight: 5U 83,1 kg/cm2, 4U 84 kg/cm2',
+'- Chu vi cán vợt: S2 (G5)',
+'- Sức căng tối đa: 28LBS (12,7kg)',
+
+		])">
+	
+<img src="../image/Vợt/Ln Tectonic 6.png">
+<h4>Lining Tectonic 6</h4>
+<p>2.300.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Tectonic 6',
+2300000,
+'../image/Vợt/Ln Tectonic 6.png'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 8 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Turbo Charging Marshal',1950000,'../image/Vợt/Ln Tủbo Charging Marshal.webp',[
+							   '1. Giới thiệu Vợt Cầu Lông Lining Turbo Charging Marshal',
+'- Vợt Cầu Lông Lining Turbo Charging Marshal được thiết kế dành cho lối chơi công thủ toàn diện, điểm cân bằng hơi nhẹ đầu đảm bảo độ linh hoạt, giúp bạn có thể chuyển đổi giữa tấn công và phòng thủ một cách nhanh chóng.',
+ 'Được trang bị công nghệ hấp thụ sốc HDF SHOCK ABSORPTION SYSTEM giúp giảm độ rung, giảm chấn thương một cách hiệu quả. Cùng với công nghệ FLEXIBLE SHAFT giúp người chơi có thể linh hoạt trong những tấn công và phòng thủ hiệu quả bởi chất liệu carbon siêu mềm giúp tăng thời gian uốn cong của thân vợt, cải thiện điểm uốn trên trục thân vợt phía trước, giúp cho những cú đập cầu mạnh mẽ và uy lực hơn.',
+'2. Thông số Vợt Cầu Lông Lining Turbo Charging Marshal',
+'- Thương hiệu: Lining',
+'- Màu sắc: Đen, Trắng',
+'- K,ung vợt: Dynamic Optimum Frame',
+'- Chất liệu: Carbon Fibre',
+'- Độ cân bằng: Hơi nhẹ đầu',
+'- Trọng lượng: 3U, 4U',
+' Độ cứng đũa: Dẻo',
+'- Chu vi cán cầm: G5, G6',
+' Mức căng tối đa: 28 LBS',
+
+		])">
+	
+<img src="../image/Vợt/Ln Tủbo Charging Marshal.webp">
+<h4>Lining Turbo Charging Marshal</h4>
+<p>1.950.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Turbo Charging Marshal',
+1950000,
+'../image/Vợt/Ln Tủbo Charging Marshal.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 9 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining Turbo Charging 01D',1200000,'../image/Vợt/Ln Turbo Charging 01D.webp',[
+							   '1. Giới thiệu vợt cầu lông Turbo Charging 01D chính hãng',
+'- Vợt cầu lông Lining Turbo Charging 01D là cây vợt vừa được Lining cho ra mắt trong năm 2019 với các công nghệ tạo dựa theo dòng vợt hơi hướng công dành cho các New Member.',
+'- Lining Turbo Charging 01D là cây vợt cân bằng, thân vợt có độ cứng trung bình, hơi nặng đầu nên vợt hơi nghiêng về công một chút nên có thể xem là một cây vợt thiên công hiệu quả.',
+'2. Thông số vợt cầu lông chính hãng Turbo Charging 01D',
+'- Độ Cứng: Trung bình',
+'- Khung vợt: Military Grade Carbon Fiber',
+'- Thân vợt: Military Grade Carbon Fiber',
+'- Trọng lượng: 83g (W2)',
+'- Điểm cân bằng: 300mm (Nặng đầu)',
+'- Chu vi cán vợt: S1 (G6)',
+'- Chiều dài vợt: 670mm (Ngắn)',
+'- Chiều dài cán vợt: 200mm',
+'- Sức căng: Dọc 24-28 lbs, ngang 26-30 lbs (Tối đa 12,7kg)',
+'- Màu sắc: Đỏ sậm phối Cam.',
+
+		])">
+	
+<img src="../image/Vợt/Ln Turbo Charging 01D.webp">
+<h4>Lining Turbo Charging 01D</h4>
+<p>1.200.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining Turbo Charging 01D',
+1200000,
+'../image/Vợt/Ln Turbo Charging 01D.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 10 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('  Lining Windstorm 500',1390000,'../image/Vợt/Ln Windstorm 500.webp',[
+							   '1. Giới thiệu về vợt cầu lông Lining Windstorm 500',
+'Vợt cầu lông Lining Windstorm 500 thuộc dòng vợt Extra Skill được sản xuất bởi nhà sản xuất cầu lông nổi tiếng Lining.',
+'Li-Ning Windstorm được biết đến là nền tảng công nghệ mới dành cho vợt cầu lông nhẹ. Đối với những cây vợt cầu lông được xây dựng bằng công nghê Windstorm, người chơi cầu lông có thể tận hưởng cảm giác vung vợt với tốc độ nhanh. Hiện tại, đây là dòng vợt cầu lông nhẹ nhất khoảng 72 grams của Lining.',
+'2. Thông số về vợt cầu lông Lining Windstorm 500',
+'- Độ dẻo: Trung bình.',
+'- Khung vợt: Commercial Grade Carbon Fiber',
+'- Thân vợt: Commercial Grade Carbon Fiber',
+'- Trọng lượng: 5U/ W1 (75-79 grams)',
+'- Chu vi cán vợt: S2 (3.25 Inch)',
+'- Sức căng tối đa: 22-26 LBS',
+'- Điểm cân bằng: Cân bằng.',
+
+		])">
+	
+<img src="../image/Vợt/Ln Windstorm 500.webp">
+<h4> Lining Windstorm 500</h4>
+<p>1.390.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'  Lining Windstorm 500',
+1390000,
+'../image/Vợt/Ln Windstorm 500.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+
+  </div>
+</div>
+	<!-- MODAL -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 id="name"></h4>
+      </div>
+
+      <div class="modal-body ">
+        <img id="img" style="width:100%; height:250px; object-fit:cover"><br><br>
+        <h3 id="price"></h3>
+        <ul id="info"></ul>
+      </div>
+
+      <div class="modal-footer">
+
+  	
+
+
+
+  <button class="btn btn-default" data-dismiss="modal">Đóng</button>
+
+</div>
+
+    </div>
+  </div>
+</div>
+	
+	<footer class="footer">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-sm-4">
+        <h4>MQA Sport</h4>
+        <p>Chuyên cung cấp dụng cụ cầu lông chính hãng, giá tốt.</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Liên hệ</h4>
+        <p>📍 Địa chỉ: TP.HCM</p>
+        <p>📞 0123 456 789</p>
+        <p>📧 mqa@gmail.com</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Theo dõi</h4>
+        <p>Facebook</p>
+        <p>Zalo</p>
+        <p>Instagram</p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <p class="text-center">© 2026 MQA Sport - All rights reserved</p>
+  </div>
+</footer>
+	<!-- Đăng nhập đăng xuất -->
+	
+	<script>
+let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "Xin chào " + user + " | <a href='#' onclick='logout()'>Đăng xuất</a>";
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}
+</script>
+	<!-- đăng ký đăng nhập -->
+	<script>
+		window.onload = function(){
+let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "👋 Xin chào, <b>" + user + "</b> | <a href='#' onclick='logout()'>Đăng xuất</a>";
+} else {
+  document.getElementById("user-area").innerHTML =
+    '<a href="dangnhap.html">Đăng nhập</a> | <a href="dangky.html">Đăng ký</a>';
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}}
+</script>
+	
+
+</body>
+</html>

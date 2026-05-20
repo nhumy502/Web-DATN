@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Giới thiệu - MQA Sport</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+
+/* BODY */
+<style>
+body {
+	background:radial-gradient(circle at top left, #bbf7d0 0%, transparent 40%),radial-gradient(circle at bottom right, #86efac 0%, transparent 40%),#ffffff;
+	color:#374151; font-family: Arrial;}
+
+/* MENU */
+.mega-menu {
+  position: absolute;
+  width: 50vw;  /*độ rộng*/
+  left: 0;
+  background: white;
+	border-top: 3px solid #22c55e;
+  padding: 20px;
+  display: none;
+  z-index: 1000;
+	overflow: hidden;
+}
+	.mega-menu a {
+  display: block;
+		color: white;
+		margin-bottom: 5px;
+		text-align: left;
+  padding: 5px 0;
+  white-space: normal;   /* cho phép xuống dòng */
+}
+
+.mega-menu .col-sm-3 {
+  border-right: 1px solid #333;
+	padding: 10px;
+	float: left;
+}
+
+.mega-menu .col-sm-3:last-child 
+	{
+  border-right: none;
+}
+.mega-menu h4 {
+	margin-bottom: 10px;
+  	display: block;
+  	width: 100%;
+ 	margin-bottom: 10px;
+	color: #16a34a;
+}		
+
+.mega-menu a {
+  display: block;
+  margin-bottom: 5px;
+	text-align: left;
+	color: #374151;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+	.mega-menu .row {
+		margin: 0 !important;
+  display: flex;
+}
+	.mega-menu h4 {color: orange;}
+.mega-menu a {
+	color:white; 
+	display:block; 
+	margin-bottom:5px;}
+.mega-menu a:hover {
+	color:#22c55e;}
+	/*NAV*/
+	.navbar{
+		background: linear-gradient(to right, #22c55e,#4ade80);
+	}
+	.navbar-brand 
+	{
+  height: 50px;          
+  padding: 5px 15px; 
+		color: white !important;
+		font-weight: bold;
+}
+	.navbar-nav li a {
+		color: white !important;
+		padding: 20px 30px;
+		font-size: 15px;
+	}
+	.navbar-nav li a:hover{
+		background: #16a34a !important;
+		border-radius:  20px;
+		
+	}
+	.navbar-nav li{
+		margin-right: 5px;
+	}
+	.navbar{
+		background: #111827;
+		border: none;
+	}
+	
+	
+.dropdown:hover .mega-menu {display:block;}
+
+
+
+/* PRODUCT */
+.product {
+  background:white;
+  padding:15px;
+  text-align:center;
+  margin-bottom:20px;
+  cursor:pointer;
+  border-radius:12px;
+  transition:0.3s;
+	border: 1px solid #e5e7eb;
+}
+.product:hover {
+  transform: translateY(-5px);
+	box-shadow:  0 5px 15px rgba(34,197,94,0.3);
+}
+	.product h4{
+		color: #16a34a;
+	}
+	.product p{
+		color:#22c55e;
+	}
+
+.product img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:8px;
+}
+	/*BUTTON*/
+	.btn-danger{
+		background: #22c55e;
+		border: none;
+	}
+
+/* FIX MODAL */
+.modal-content {
+  background: white,
+	  color:#374151;
+}
+	/*chống tràn chữ*/
+	#info {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+	/*MODAL cuộn*/
+	.modal-body{
+		max-height: 400px;
+		overflow-y: auto;
+	}
+	#img {
+		width: 100%;
+		height:250px;
+		object-fit: cover;
+	}
+	.footer {
+  background: linear-gradient(to right, #064e3b, #022c22);
+  color: white;
+  padding: 40px 0;
+  margin-top: 50px;
+  border-top: 3px solid #22c55e;
+}
+
+/* tiêu đề */
+.footer h4 {
+  color: #4ade80;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* nội dung */
+.footer p {
+  color: #d1fae5;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+
+/* hover nổi */
+.footer p:hover {
+  color: #22c55e;
+  transform: translateX(5px);
+  cursor: pointer;
+}
+
+/* đường line */
+.footer hr {
+  border-color: #065f46;
+  margin: 20px 0;
+}
+
+/* dòng cuối */
+.footer .text-center {
+  color: #86efac;
+  font-size: 13px;
+}
+	
+#user-area a{
+  color:white !important;
+  margin-left:10px;
+}
+
+#user-area b{
+  color:#22c55e;
+}
+/* Banner */
+.banner{
+    height:200px;
+    background:url('../image/banner-gioithieu.jpg') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-align:center;
+}
+
+.banner h1{
+    font-size:50px;
+    font-weight:bold;
+    text-shadow:2px 2px 10px black;
+}
+
+/* Section */
+.section{
+    padding:60px 0;
+	margin-top: -100px;
+	
+}
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+    color:#16a34a;
+    font-weight:bold;
+}
+
+/* Box */
+.info-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.4s;
+    height:100%;
+}
+
+.info-box:hover{
+    transform:translateY(-8px);
+}
+
+.info-box h3{
+    color:#16a34a;
+}
+	.info-box p{
+		font-size: 18px;   /* chữ nội dung lớn hơn */
+    line-height: 1.5;  /* giãn dòng dễ đọc */
+    color: #374151;
+    text-align: justify;
+	}
+
+/* ảnh */
+.shop-img{
+    width:100%;
+    border-radius:15px;
+}
+
+
+
+</style>
+	
+
+
+</head>
+
+<body>
+
+<!-- MENU -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">
+        <img src="../image/logo.png" style="height:40px;">
+      </a>
+    </div>
+
+    <!-- MENU -->
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Trang chủ</a></li>
+
+      <li class="dropdown">
+        <a href="#">Sản phẩm</a>
+        <div class="mega-menu">
+          <div class="row">
+            <div class="col-sm-3">
+              <h4>Vợt</h4>
+              <a href="Vợt Yonex.html">Yonex</a>
+              <a href="Vợt Lining.html">Lining</a>
+              <a href="Vợt Victor.html">Victor</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Giày</h4>
+              <a href="Giày Yonex.html">Yonex</a>
+              <a href="Giày lining.html">Lining</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Quần áo</h4>
+              <a href="Áo.html">Áo</a>
+              <a href="Quần.html">Quần</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Phụ kiện</h4>
+              <a href="Cước.html">Cước</a>
+              <a href="Quả cầu.html">Quả cầu</a>
+				<a href="Vớ.html">Vớ</a>
+				
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="Gioithieu.html">Giới thiệu</a></li>
+      <li><a href="Lienhe.html">Liên hệ</a></li>
+    </ul>
+
+    <!-- TÌM KIẾM -->
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="🔍 Tìm sản phẩm...">
+      </div>
+      <button type="submit" class="btn btn-success">Tìm</button>
+    </form>
+
+    <!-- LOGIN -->
+    <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    🛒 Giỏ hàng (<span id="cart-count">0</span>)
+  </a>
+
+  <ul class="dropdown-menu" style="width:300px; padding:10px;">
+    <li id="cart-items">Chưa có sản phẩm</li>
+  </ul>
+</li>
+      <li><a href="Dangky.html"><span class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
+      <li><a href="Dangnhap.html"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+		<li id="user-area"></li>
+    </ul>
+
+  </div>
+</nav>
+
+
+
+<body>
+
+
+
+<!-- Banner -->
+<div class="banner">
+    <div>
+        <h1>MQA SPORT</h1>
+        <p>Dụng cụ cầu lông chính hãng - Chất lượng tạo nên đẳng cấp</p>
+    </div>
+</div>
+
+<!-- Giới thiệu -->
+<div class="container section">
+
+    <h2 class="title">Về Chúng Tôi</h2>
+
+    <div class="row">
+
+        <div class="col-sm-5">
+            <img src="../image/gioithieumqa.png" class="shop-img">
+        </div>
+
+        <div class="col-sm-7" style="padding-right:0;">
+            <div class="info-box">
+                <h3>MQA Sport là ai?</h3>
+<p>
+                MQA Sport là website bán dụng cụ cầu lông được nhóm em xây dựng với mong muốn tạo ra một nơi mua sắm trực tuyến đơn giản, tiện lợi và dễ sử dụng cho những người yêu thích môn cầu lông. Website cung cấp nhiều sản phẩm khác nhau như vợt cầu lông, giày, quần áo thể thao, quả cầu và các phụ kiện cần thiết cho việc tập luyện và thi đấu.
+				</p>
+				<p>
+Trong quá trình thực hiện đề tài, nhóm em mong muốn xây dựng một website không chỉ hỗ trợ khách hàng xem và lựa chọn sản phẩm dễ dàng mà còn giúp việc mua sắm trở nên nhanh chóng hơn thông qua các chức năng như đăng ký tài khoản, đăng nhập, tìm kiếm sản phẩm, xem thông tin chi tiết, thêm vào giỏ hàng và đặt hàng.
+				</p>
+				<p>
+Bên cạnh đó, MQA Sport hướng đến việc mang lại những sản phẩm chất lượng, giao diện thân thiện và dễ sử dụng cho người dùng. Thông qua đề tài này, nhóm em cũng có cơ hội vận dụng các kiến thức đã học về HTML, CSS, JavaScript để xây dựng một website hoàn chỉnh và có tính ứng dụng thực tế.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Tầm nhìn -->
+<div class=" container section">
+
+    <h2 class="title">Giá Trị Của Chúng Tôi</h2>
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="info-box">
+                <h3>🎯 Sứ mệnh</h3>
+                <p>
+                    Mang đến những sản phẩm cầu lông chất lượng, 
+                    giúp người chơi nâng cao trải nghiệm thi đấu.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="info-box">
+                <h3>🚀 Tầm nhìn</h3>
+                <p>
+                    Trở thành website bán dụng cụ cầu lông 
+                    được yêu thích và tin tưởng hàng đầu.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="info-box">
+                <h3>💚 Cam kết</h3>
+                <p>
+                    Sản phẩm chính hãng, giá hợp lý, 
+                    hỗ trợ khách hàng nhanh chóng.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+	let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "Xin chào " + user + " | <a href='#' onclick='logout()'>Đăng xuất</a>";
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}
+</script>
+	
+	<script>
+function showDetail(name, price, img, infoArray){
+  document.getElementById("name").innerHTML = name;
+  document.getElementById("price").innerHTML = price;
+  document.getElementById("img").src = img;
+
+  let html = "<ul>";
+
+  if(infoArray){
+    infoArray.forEach(function(i){
+      html += "<li>" + i + "</li>";
+    });
+  }
+html +="<ul/>";
+  document.getElementById("info").innerHTML = html;
+
+  $("#myModal").modal("show");
+}
+	</script>
+	
+	
+	
+	<script>
+function addToCart(name, price, img){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let index = cart.findIndex(item => item.name === name);
+
+  if(index !== -1){
+    cart[index].qty += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: Number(price),
+      img: img,
+      qty: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+	
+	
+	
+	<script>
+function renderCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let html = "";
+  let total = 0;
+
+  if(cart.length === 0){
+    html = "Chưa có sản phẩm";
+  } else {
+    cart.forEach(function(item, index){
+      let itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      html += `
+      <div style="display:flex; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+        
+        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:5px; margin-right:10px;">
+
+        <div style="flex:1;">
+          <b>${item.name}</b><br>
+          ${item.price.toLocaleString()}đ x ${item.qty}
+          <br><b>${itemTotal.toLocaleString()}đ</b>
+
+          <br>
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <button onclick="removeItem(${index})">X</button>
+        </div>
+
+      </div>
+      `;
+    });
+
+    html += `<hr><b>Tổng: ${total.toLocaleString()}đ</b>`;
+  }
+
+  document.getElementById("cart-items").innerHTML = html;
+  document.getElementById("cart-count").innerText = cart.length;
+}
+</script>
+	
+	<script>
+function changeQty(index, change){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(index,1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+
+<script>
+let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "👋 Xin chào, <b>" + user + "</b> | <a href='#' onclick='logout()'>Đăng xuất</a>";
+} else {
+  document.getElementById("user-area").innerHTML =
+    '<a href="dangnhap.html">Đăng nhập</a> | <a href="dangky.html">Đăng ký</a>';
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}
+</script>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-sm-4">
+        <h4>MQA Sport</h4>
+        <p>Chuyên cung cấp dụng cụ cầu lông chính hãng, giá tốt.</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Liên hệ</h4>
+        <p>📍 Địa chỉ: TP.HCM</p>
+        <p>📞 0123 456 789</p>
+        <p>📧 mqa@gmail.com</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Theo dõi</h4>
+        <p>Facebook</p>
+        <p>Zalo</p>
+        <p>Instagram</p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <p class="text-center">© 2026 MQA Sport - All rights reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>

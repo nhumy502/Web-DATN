@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Vợt Yonex</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+body {
+	background:radial-gradient(circle at top left, #bbf7d0 0%, transparent 40%),radial-gradient(circle at bottom right, #86efac 0%, transparent 40%),#ffffff;
+	color:#374151; font-family: Arrial;}
+
+/* MENU */
+.mega-menu {
+  position: absolute;
+  width: 50vw;  /*độ rộng*/
+  left: 0;
+  background: white;
+	border-top: 3px solid #22c55e;
+  padding: 20px;
+  display: none;
+  z-index: 1000;
+	overflow: hidden;
+}
+	.mega-menu a {
+  display: block;
+		color: white;
+		margin-bottom: 5px;
+		text-align: left;
+  padding: 5px 0;
+  white-space: normal;   /* cho phép xuống dòng */
+}
+
+.mega-menu .col-sm-3 {
+  border-right: 1px solid #333;
+	padding: 10px;
+	float: left;
+}
+
+.mega-menu .col-sm-3:last-child 
+	{
+  border-right: none;
+}
+.mega-menu h4 {
+	margin-bottom: 10px;
+  	display: block;
+  	width: 100%;
+ 	margin-bottom: 10px;
+	color: #16a34a;
+}		
+
+.mega-menu a {
+  display: block;
+  margin-bottom: 5px;
+	text-align: left;
+	color: #374151;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+	.mega-menu .row {
+		margin: 0 !important;
+  display: flex;
+}
+	.mega-menu h4 {color: orange;}
+.mega-menu a {
+	color:white; 
+	display:block; 
+	margin-bottom:5px;}
+.mega-menu a:hover {
+	color:#22c55e;}
+	/*NAV*/
+	.navbar{
+		background: linear-gradient(to right, #22c55e,#4ade80);
+	}
+	.navbar-brand 
+	{
+  height: 50px;          
+  padding: 5px 15px; 
+		color: white !important;
+		font-weight: bold;
+}
+	.navbar-nav li a {
+		color: white !important;
+		padding: 20px 30px;
+		font-size: 15px;
+	}
+	.navbar-nav li a:hover{
+		background: #16a34a !important;
+		border-radius:  20px;
+		
+	}
+	.navbar-nav li{
+		margin-right: 5px;
+	}
+	.navbar{
+		background: #111827;
+		border: none;
+	}
+	
+	
+.dropdown:hover .mega-menu {display:block;}
+
+
+
+/* PRODUCT */
+.product {
+  background:white;
+  padding:15px;
+  text-align:center;
+  margin-bottom:20px;
+  cursor:pointer;
+  border-radius:12px;
+  transition:0.3s;
+	border: 1px solid #e5e7eb;
+}
+.product:hover {
+  transform: translateY(-5px);
+	box-shadow:  0 5px 15px rgba(34,197,94,0.3);
+}
+	.product h4{
+		color: #16a34a;
+	}
+	.product p{
+		color:#22c55e;
+	}
+
+.product img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:8px;
+}
+	/*BUTTON*/
+	.btn-danger{
+		background: #22c55e;
+		border: none;
+	}
+
+/* FIX MODAL */
+.modal-content {
+  background: white,
+	  color:#374151;
+}
+	/*chống tràn chữ*/
+	#info {
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+	/*MODAL cuộn*/
+	.modal-body{
+		max-height: 400px;
+		overflow-y: auto;
+	}
+	#img {
+		width: 100%;
+		height:250px;
+		object-fit: cover;
+	}
+	.footer {
+  background: linear-gradient(to right, #064e3b, #022c22);
+  color: white;
+  padding: 40px 0;
+  margin-top: 50px;
+  border-top: 3px solid #22c55e;
+}
+
+/* tiêu đề */
+.footer h4 {
+  color: #4ade80;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* nội dung */
+.footer p {
+  color: #d1fae5;
+  margin: 6px 0;
+  transition: 0.3s;
+}
+
+/* hover nổi */
+.footer p:hover {
+  color: #22c55e;
+  transform: translateX(5px);
+  cursor: pointer;
+}
+
+/* đường line */
+.footer hr {
+  border-color: #065f46;
+  margin: 20px 0;
+}
+
+/* dòng cuối */
+.footer .text-center {
+  color: #86efac;
+  font-size: 13px;
+}
+	
+#user-area a{
+  color:white !important;
+  margin-left:10px;
+}
+
+#user-area b{
+  color:#22c55e;
+}
+
+</style>
+	
+
+	
+	<!-- hiển thị thông tin sản phầm -->
+	
+	<script>
+	function showDetail(name, price, img, infoArray){
+  document.getElementById("name").innerHTML = name;
+  document.getElementById("price").innerHTML = price;
+  document.getElementById("img").src = img;
+
+  let html = "<ul>";
+
+  if(infoArray){
+    infoArray.forEach(function(i){
+      html += "<li>" + i + "</li>";
+    });
+  }
+html +="</ul>";
+  document.getElementById("info").innerHTML = html;
+
+  $("#myModal").modal("show");
+}
+	</script>
+	<!-- THÊM VÀO GIỎ HÀNG -->
+	
+	<script>
+function addToCart(name, price, img){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let index = cart.findIndex(item => item.name === name);
+
+  if(index !== -1){
+    cart[index].qty += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: Number(price),
+      img: img,
+      qty: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+	<!-- HIỂN THỊ GIỎ HÀNG -->
+	<script>
+function renderCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let html = "";
+  let total = 0;
+
+  if(cart.length === 0){
+    html = "Chưa có sản phẩm";
+  } else {
+    cart.forEach(function(item, index){
+      let itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      html += `
+      <div style="display:flex; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+        
+        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:5px; margin-right:10px;">
+
+        <div style="flex:1;">
+          <b>${item.name}</b><br>
+          ${item.price.toLocaleString()}đ x ${item.qty}
+          <br><b>${itemTotal.toLocaleString()}đ</b>
+
+          <br>
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <button onclick="removeItem(${index})">X</button>
+        </div>
+
+      </div>
+      `;
+    });
+
+    html += `<hr><b>Tổng: ${total.toLocaleString()}đ</b>`;
+  }
+
+  document.getElementById("cart-items").innerHTML = html;
+  document.getElementById("cart-count").innerText = cart.length;
+}
+</script>
+	
+	<!-- TĂNG GIẢM, XOÁ SẢN PHẨM -->
+	<script>
+function changeQty(index, change){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(index,1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+</script>
+	<script>
+renderCart();
+</script>
+
+	
+	
+</head>
+
+<body>
+	<!-- MENU -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">
+        <img src="../image/logo.png" style="height:40px;">
+      </a>
+    </div>
+
+    <!-- MENU -->
+     <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Trang chủ</a></li>
+
+      <li class="dropdown">
+        <a href="#">Sản phẩm</a>
+        <div class="mega-menu">
+          <div class="row">
+            <div class="col-sm-3">
+              <h4>Vợt</h4>
+              <a href="Vợt Yonex.html">Yonex</a>
+              <a href="Vợt Lining.html">Lining</a>
+              <a href="Vợt Victor.html">Victor</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Giày</h4>
+              <a href="Giày Yonex.html">Yonex</a>
+              <a href="Giày lining.html">Lining</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Quần áo</h4>
+              <a href="Áo.html">Áo</a>
+              <a href="Quần.html">Quần</a>
+            </div>
+
+            <div class="col-sm-3">
+              <h4>Phụ kiện</h4>
+              <a href="Cước.html">Cước</a>
+              <a href="Quả cầu.html">Quả cầu</a>
+				<a href="Vớ.html">Vớ</a>
+				
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li><a href="Gioithieu.html">Giới thiệu</a></li>
+      <li><a href="Lienhe.html">Liên hệ</a></li>
+    </ul>
+
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" id="search" class="form-control" placeholder="🔍 Tìm sản phẩm..." onKeyup="searchProduct
+()">
+      </div>
+      <button type="button " class="btn btn-success" onclick="searchProduct()">Tìm</button>
+    </form>
+
+    <!-- LOGIN -->
+    <ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    🛒 Giỏ hàng (<span id="cart-count">0</span>)
+  </a>
+
+  <ul class="dropdown-menu" style="width:300px; padding:10px;">
+    <li id="cart-items">Chưa có sản phẩm</li>
+  </ul>
+</li>
+      <li><a href="Dangky.html"><span class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
+      <li><a href="Dangnhap.html"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+		<li id="user-area"></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Giày Lining</h2>
+  
+  <div class="row">
+<!-- SP 1 -->
+    <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining AYTV021-5',1120000,'../image/giày/Lining AYTV021-5.webp',
+							  [
+							   '1. Giới thiệu Giày cầu lông Lining AYTV021-5',
+'- Giày cầu lông Lining AYTV021-5 là lựa chọn hướng đến người chơi cần sự linh hoạt, ổn định và cảm giác thoải mái trong suốt quá trình vận động. Ngay từ những bước di chuyển đầu tiên, đôi giày mang lại cảm giác nhẹ chân, phản hồi tốt và không gây áp lực lên bàn chân khi đổi hướng liên tục. Thiết kế form ôm vừa vặn giúp cố định bàn chân chắc chắn, hỗ trợ hiệu quả trong các pha bật nhảy, tiếp đất và di chuyển ngang.',
+							  '2. Thông số của Giày cầu lông Lining AYTV021-5',
+'- Thương hiệu: Lining',
+
+'- Thân giày: Da PU tổng hợp kết hợp lưới thoáng khí',
+
+'- Mũ giày: Vải + da tổng hợp (Synthetic Leather)',
+
+'- Đế giữa: EVA cao cấp',
+
+'- Đế ngoài: Cao su (RB) kết hợp EVA + TPU',
+
+'- Size giày cầu lông Lining AYTV021-5: 36 - 44',
+
+
+		])">
+	
+<img src="../image/giày/Lining AYTV021-5.webp">
+<h4>Lining AYTV021-5</h4>
+<p>1.120.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining AYTV021-5',
+1120000,
+'../image/giày/Lining AYTV021-5.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+<!-- SP 2 -->
+    <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail(' Lining AYTZU001-1',2300000,'../image/giày/Lining AYTZU001-1.jpg',[
+							   '1. Giới thiệu Giày cầu lông Lining AYZU001-1',
+'- Giày cầu lông Lining AYZU001-1 là mẫu giày cao cấp của thương hiệu Li-ning nổi tiếng về sản xuất dụng cụ thể thao trên thế giới nói chung và cầu lông nói riêng đã cho ra mắt với thiết kế hiện đại, tích hợp nhiều công nghệ cao nhằm hướng tới các đối tượng người chơi phong trào, đặc biệt người bán chuyên và chuyên nghiệp.',
+
+'- Lining AYZU001-1 mang đến cho người chơi cảm giác nhẹ nhàng, thoải mái, chắc chắn và bám sân tuyệt đối. Sở hữu ngoại hình thời trang, hiện đại và linh hoạt thích hợp cho nhiều đối tượng khác nhau cả nam và nữ.',
+							  '2. Thông số Giày cầu lông Lining AYZU001-1',
+'- Thương hiệu: Lining',
+
+'- Màu sắc: Trắng',
+
+'- Thân trên: Syntheric + Textile + TPU',
+
+'- Đế: Rubber + PHYLON + TPU',
+
+
+
+		])">
+	
+<img src="../image/giày/Lining AYTZU001-1.jpg">
+<h4>Lining AYTZU001-1</h4>
+<p>2.300.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining AYTZU001-1',
+2300000,
+'../image/giày/Lining AYTZU001-1.jpg'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 3 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining AYTS016-3',1100000,'../image/giày/Lining AYTS016-3.webp',[
+							   '			1. Giới thiệu giày cầu lông Lining AYTS016-3',
+'- Lining AYTS016-3 nổi trội là mẫu giày cầu lông mới vừa được thương hiệu TOP 1 Trung Quốc cho ra mắt trong năm 2022 đảm bảo khi lên chân các lông thủ sẽ vô cùng nhẹ nhàng và cho độ êm ái trên từng bước di chuyển và đảm bảo người chơi không gặp những chấn thương xảy ra.',
+
+'- Giày được thiết kế với tông màu Trắng kết hợp màu Đỏ Xanh ở phần để giày càng tăng độ cá tính của đôi giày, điểm cộng là phần LOGO thương hiệu cũng được tô màu Đỏ tạo điểm nhấn nổi bật hơn. Với sự thiết kế độc đáo như thế này thì tin chắc rằng đây sẽ là đôi giày được các lông thủ săn đón và quan tâm nhiều.',
+							  '2. Thông số kỹ thuật giày cầu lông Lining AYTS016-3',
+'- Thương hiệu: Lining',
+
+'- Màu sắc: Trắng Đỏ Xanh',
+
+'- Mặt trên: dệt + da tổng hợp',
+
+'- Đế: cao su + EVA',
+
+'- Chỉ số độ thoáng khí trên giày: siêu thoáng khí.',
+		])">
+	
+<img src="../image/giày/Lining AYTS016-3.webp">
+<h4>Lining AYTS016-3</h4>
+<p>1.100.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining AYTS016-3',
+1100000,
+'../image/giày/Lining AYTS016-3.webp'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 4 -->
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining AYZT009-2',1500000,'../image/giày/Lining AYZT009-2.jpg',[
+							  '1. Giới thiệu giày cầu lông Lining AYZT009-2',
+'Dòng sản phẩm mới của Lining, giày cầu lông Lining AYZT009-2 là một tác phẩm tầm trung có thể nói là toàn diện với về chất lượng, ngoại hình lẫn giá cả, được hãng cho ra mắt vào năm 2023 với một thiết kế hoàn toàn mới và độc đáo. Sự cuốn hút của nó không chỉ dừng lại ở chất lượng mà còn lan tỏa từ cái nhìn đầu tiên ở thiết kế bên ngoài.',
+							  '2. Kết cấu tổng thể giày cầu lông Lining AYZT009-2',
+'- Thương hiệu: Lining',
+
+'- Màu sắc: Hồng',
+
+'- Phần trên: Dệt + Da tổng hợp',
+
+'- Đế: Cao su + EVA',
+
+'- Mũi giày hơi cong để giảm va chạm và chấn thương do vận động mạnh.',
+							  
+
+
+		])">
+	
+<img src="../image/giày/Lining AYZT009-2.jpg">
+<h4>Lining AYZT009-2</h4>
+<p>1.500.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining AYZT009-2',
+1500000,
+'../image/giày/Lining AYZT009-2.jpg'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	  
+	  <!-- SP 5 --> 
+	  <div class="col-sm-4 product-item">
+<div class="product" onclick="showDetail('Lining AYAT013-1',2590000,'../image/giày/Lining AYAT013-1.jpg',[
+							   '1. Giới thiệu giày cầu lông Lining AYAT013-1',
+'- Giày cầu lông Lining AYAT013-1 là mẫu giày cầu lông cao cấp mang lại sự toàn diện từ chất lượng cho đến thiết kế bên ngoài hướng đến mọi đối tượng người chơi cầu lông. Đặc biệt là những người chơi lâu năm, chuyên nghiệp.',
+
+'- Thân giày Lining AYAT013-1được làm từ chất liệu da tổng hợp, giữ form giày được lâu. Ngoài ra phần mũi giày còn được thiết kế tỉ mỉ để bảo vệ từng ngón chân, giảm thiểu nguy cơ chấn thương trong các tình huống va chạm.',
+				'2. Kết cấu tổng thể giày cầu lông Lining AYAT013-1',
+'- Thương hiệu: Lining',
+
+'- Màu sắc: Trắng',
+
+'- Mặt trên: dệt + da tổng hợp',
+
+'- Đế: cao su + EVA',
+
+'- Chỉ số độ thoáng khí trên giày: siêu thoáng khí	',		  
+		])">
+	
+<img src="../image/giày/Lining AYAT013-1.jpg">
+<h4>Lining AYAT013-1</h4>
+<p>2.590.000đ</p>
+	<button class="btn btn-success"
+onclick="addToCart(
+'Lining AYAT013-1',
+2590000,
+'../image/giày/Lining AYAT013-1.jpg'
+)">
+🛒 Thêm vào giỏ
+</button>
+
+</div>
+</div>
+	<!-- MODAL -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 id="name"></h4>
+      </div>
+
+      <div class="modal-body ">
+        <img id="img" style="width:100%; height:250px; object-fit:cover"><br><br>
+        <h3 id="price"></h3>
+        <ul id="info"></ul>
+      </div>
+
+      <div class="modal-footer">
+
+  	
+
+
+
+  <button class="btn btn-default" data-dismiss="modal">Đóng</button>
+
+</div>
+
+    </div>
+  </div>
+</div>
+	</div>
+	</div>
+	<footer class="footer">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-sm-4">
+        <h4>MQA Sport</h4>
+        <p>Chuyên cung cấp dụng cụ cầu lông chính hãng, giá tốt.</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Liên hệ</h4>
+        <p>📍 Địa chỉ: TP.HCM</p>
+        <p>📞 0123 456 789</p>
+        <p>📧 mqa@gmail.com</p>
+      </div>
+
+      <div class="col-sm-4">
+        <h4>Theo dõi</h4>
+        <p>Facebook</p>
+        <p>Zalo</p>
+        <p>Instagram</p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <p class="text-center">© 2026 MQA Sport - All rights reserved</p>
+  </div>
+</footer>
+	<script>
+function searchProduct(){
+  let keyword = document.getElementById("search").value.toLowerCase();
+  let products = document.getElementsByClassName("product-item");
+
+  for(let i = 0; i < products.length; i++){
+    let name = products[i].innerText.toLowerCase();
+
+    if(name.includes(keyword)){
+      products[i].style.display = "block";
+    } else {
+      products[i].style.display = "none";
+    }
+  }
+}
+</script>
+	<!-- Đăng nhập đăng xuất -->
+	
+	<script>
+let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "Xin chào " + user + " | <a href='#' onclick='logout()'>Đăng xuất</a>";
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}
+</script>
+	<!-- đăng ký đăng nhập -->
+	<script>
+		window.onload = function(){
+let user = localStorage.getItem("loginUser");
+
+if(user){
+  document.getElementById("user-area").innerHTML =
+    "👋 Xin chào, <b>" + user + "</b> | <a href='#' onclick='logout()'>Đăng xuất</a>";
+} else {
+  document.getElementById("user-area").innerHTML =
+    '<a href="dangnhap.html">Đăng nhập</a> | <a href="dangky.html">Đăng ký</a>';
+}
+
+function logout(){
+  localStorage.removeItem("loginUser");
+  location.reload();
+}}
+</script>
+	
+</body>
+</html>
