@@ -408,7 +408,7 @@ function guiLienHe(){
 
     <!-- LOGO -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="html/index.html">
         <img src="../image/logo.png" style="height:40px;">
       </a>
     </div>
@@ -430,7 +430,7 @@ function guiLienHe(){
 
             <div class="col-sm-3">
               <h4>Giày</h4>
-              <a href="Giày Yonex.html">Yonex</a>
+              <a href="Vợt Yonex.html">Yonex</a>
               <a href="Giày lining.html">Lining</a>
             </div>
 
@@ -456,11 +456,14 @@ function guiLienHe(){
     </ul>
 
     <!-- TÌM KIẾM -->
+	  
     <form class="navbar-form navbar-left">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="🔍 Tìm sản phẩm...">
+        <input type="text" id="search" class="form-control" placeholder="🔍 Tìm sản phẩm..." onKeyup="searchProduct
+()">
+		  <div id="suggest-box"></div>
       </div>
-      <button type="submit" class="btn btn-success">Tìm</button>
+      <button type="button " class="btn btn-success" onclick="searchProduct()">Tìm</button>
     </form>
 
     <!-- LOGIN -->

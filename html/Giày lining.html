@@ -341,13 +341,13 @@ renderCart();
 
     <!-- LOGO -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="html/index.html">
         <img src="../image/logo.png" style="height:40px;">
       </a>
     </div>
 
     <!-- MENU -->
-     <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav">
       <li class="active"><a href="index.html">Trang chủ</a></li>
 
       <li class="dropdown">
@@ -363,7 +363,7 @@ renderCart();
 
             <div class="col-sm-3">
               <h4>Giày</h4>
-              <a href="Giày Yonex.html">Yonex</a>
+              <a href="Vợt Yonex.html">Yonex</a>
               <a href="Giày lining.html">Lining</a>
             </div>
 
@@ -388,10 +388,13 @@ renderCart();
       <li><a href="Lienhe.html">Liên hệ</a></li>
     </ul>
 
+    <!-- TÌM KIẾM -->
+	  
     <form class="navbar-form navbar-left">
       <div class="form-group">
         <input type="text" id="search" class="form-control" placeholder="🔍 Tìm sản phẩm..." onKeyup="searchProduct
 ()">
+		  <div id="suggest-box"></div>
       </div>
       <button type="button " class="btn btn-success" onclick="searchProduct()">Tìm</button>
     </form>
