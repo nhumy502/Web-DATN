@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Đăng nhập</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+body{
+  background: linear-gradient(135deg,#bbf7d0,#ffffff);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+/* BOX */
+.form-box{
+  width:350px;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+/* TITLE */
+.form-box h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#16a34a;
+}
+/* INPUT */
+.form-control{
+  border-radius:10px;
+}
+/* BUTTON */
+.btn-main{
+  background:#22c55e;
+  color:white;
+  border:none;
+  border-radius:10px;
+  width:100%;
+  margin-top:10px;
+}
+.btn-main:hover{
+  background:#16a34a;
+}
+
+/* LINK */
+.link{
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Đăng nhập</h2>
+
+<input id="user" class="form-control" placeholder="Tên đăng nhập"><br>
+<input id="pass" type="password" class="form-control" placeholder="Mật khẩu"><br>
+
+<button class="btn btn-main" onclick="dangNhap()">Đăng nhập</button>
+
+<div class="link">
+  <a href="Dangky.html">Chưa có tài khoản? Đăng ký</a>
+</div>
+
+</div>
+
+<script>
+function dangNhap(){
+  let user = document.getElementById("user").value.trim();
+  let pass = document.getElementById("pass").value.trim();
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let check = users.find(u => u.user === user && u.pass === pass);
+
+  if(check){
+  
+    localStorage.setItem("loginUser", user);
+
+    alert("Đăng nhập thành công!");
+
+   
+    window.location.href = "index.html";
+
+  } else {
+    alert("Đăng nhập không thành công!");
+  }
+}
+</script>
+
+</body>
+</html>
